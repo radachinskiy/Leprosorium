@@ -33,7 +33,7 @@ configure do
 	"id"	INTEGER,
 	"created_date"	DATE,
 	"content"	TEXT,
-	"post_id" INTEGER
+	"post_id" INTEGER,
 	PRIMARY KEY("id" AUTOINCREMENT)
     )'
 end
@@ -114,7 +114,7 @@ post '/details/:post_id' do
     )', [content, post_id]
 
    # перенаправление на страницу поста
-  redirect to ('/details/' + post_id)
+  redirect to('/details/' + post_id)
 
 
 end
