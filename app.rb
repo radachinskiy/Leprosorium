@@ -84,6 +84,9 @@ get '/details/:post_id' do
 	# выбираем этот один пост в переменную @row
 	@row = results[0]
 
+	# выбираем комментарии для нашего поста
+	@comments = @db.execute 'select * from Comments where post_id = ? order by id', [post_id]
+
   # возвращаем представление details.erb
 	erb :details
 end
@@ -100,7 +103,7 @@ post '/details/:post_id' do
   content = params[:content]
 
   # сохранение данных в БД
-  @db.execute 'insert into Comments 
+  @db.execute 'insert into Comments
     (
       content,
       created_date,
